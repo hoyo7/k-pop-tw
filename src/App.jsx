@@ -41,6 +41,7 @@ const LandingPage = () => {
     { name: 'BTS', color: 'from-purple-600 to-purple-400', text: 'text-white' },
     { name: 'IVE', color: 'from-red-500 to-pink-500', text: 'text-white' },
     { name: 'aespa', color: 'from-indigo-500 to-purple-500', text: 'text-white' },
+    { name: 'CORTIS', color: 'from-green-400 to-teal-400', text: 'text-white' },
   ];
 
   return (

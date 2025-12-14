@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 
 const AllGroups = () => {
-  const groups = ['SEVENTEEN', 'BTS', 'IVE', 'aespa', 'BLACKPINK', 'TWICE'];
+  const groups = ['SEVENTEEN', 'BTS', 'IVE', 'aespa', 'BLACKPINK', 'TWICE', 'CORTIS'];
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-pink-500 selection:text-white p-8">
