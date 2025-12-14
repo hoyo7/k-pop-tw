@@ -101,11 +101,11 @@ const LandingPage = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
             </span>
-            專為台灣追星族設計
+            專為台灣追星族服務
           </div>
           
           <h1 className="text-4xl sm:text-6xl font-black tracking-tight mb-6 leading-tight">
-            不再錯過你愛豆的<br />
+            不再錯過韓流愛豆的<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400">重要時刻</span>
           </h1>
           
