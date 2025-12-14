@@ -49,9 +49,12 @@ const LandingPage = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex-shrink-0 cursor-pointer">
-              <span className="text-2xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
-                k-pop.tw
-              </span>
+              <div className="flex flex-col">
+                <span className="text-2xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
+                  k-pop.tw
+                </span>
+                <span className="text-xs text-slate-300 -mt-0.5">韓星活動提醒</span>
+              </div>
             </div>
             
             {/* Desktop Menu */}
@@ -274,10 +277,11 @@ const LandingPage = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div>
-                    <span className="text-xl font-black tracking-tighter text-white mb-4 block">k-pop.tw</span>
-                    <p className="text-slate-500 text-sm max-w-xs">
-                        韓星活動提醒服務。本站僅提供時間整理與提醒服務，不轉載新聞、不提供八卦內容。
-                    </p>
+                  <span className="text-xl font-black tracking-tighter text-white mb-1 block">k-pop.tw</span>
+                  <span className="text-sm text-slate-300 mb-4 block">韓星活動提醒</span>
+                  <p className="text-slate-500 text-sm max-w-xs">
+                    韓星活動提醒服務。本站僅提供時間整理與提醒服務，不轉載新聞、不提供八卦內容。
+                  </p>
                 </div>
                 <div className="flex flex-col md:items-end gap-2 text-sm text-slate-500">
                     <div className="flex items-center gap-2">

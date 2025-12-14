@@ -5,54 +5,53 @@ Purpose
 - Short, actionable guidance for an AI coding agent to be productive in this repo.
 
 Quick start
-- Node: engines in package.json require Node >= 18.
+- Node: enforced in `package.json` via `engines.node` (>= 18).
 - Install: `npm install`.
-- Dev server: `npm run dev` (Vite HMR).
-- Build: `npm run build` produces `dist` (used by Azure Static Web Apps workflow).
+- Dev server (HMR): `npm run dev` (Vite, default port 5173).
+- Build: `npm run build` → `dist` (used by Azure Static Web Apps workflow).
 - Preview build: `npm run preview`.
 - Lint: `npm run lint` (see `eslint.config.js`).
 
 Big picture
-- Single-page React app (Vite + Tailwind). UI lives entirely in `src/` and mounts at the `#root` div in `index.html`.
-- No backend/APIs in the repo (see workflow: `api_location` is empty). The subscription form in `src/App.jsx` is currently client-only and uses `alert()` — not wired to a server.
-- Deployed via Azure Static Web Apps using `.github/workflows/azure-static-web-apps-*.yml`. The workflow expects the built site in `dist`.
+- Single-page React app built with Vite + Tailwind. The entire UI lives in `src/` and mounts at the `#root` element in `index.html`.
+- No backend is present by default — client-only behavior is used for features like the subscription form (see `src/App.jsx`).
+- Deployed via GitHub Actions → Azure Static Web Apps; the workflow files are under `.github/workflows/azure-static-web-apps-*.yml`. The workflow expects the static output in `dist`.
 
-Key files & patterns (refer to these when making edits)
-- `src/App.jsx`: main landing page and the single largest component. Examples:
-  - groups grid uses Tailwind gradients (`from-blue-200 to-pink-200`) and inline JSX patterns.
-  - Countdown logic is implemented with a `useEffect` that computes remaining time — move to an API or utility if you need persistence or server-sent reminders.
-- `src/main.jsx`: app entry point (StrictMode + root render).
-- `index.html`: root mounting point and Vite entry script.
-- `tailwind.config.js`: small extension for a `blob` animation used throughout the UI.
-- `eslint.config.js`: lint rules; note `no-unused-vars` ignores names matching `^[A-Z_]` (helps with constants/components).
-- `.github/workflows/azure-static-web-apps-*.yml`: CI/CD; update `app_location`/`api_location`/`output_location` if you introduce APIs or change build outputs.
+Essential files & patterns
+- `src/App.jsx`: main landing page and largest component. Contains the countdown `useEffect` and a client-only subscription form (`onSubmit={handleSubscribe}` that calls `alert()`). Prefer extracting logic into small components or utilities when adding complexity.
+- `src/main.jsx`: app entry (React StrictMode + root render).
+- `index.html`: mount point and Vite entry script.
+- `tailwind.config.js`: adds a `blob` animation used throughout; use `animate-blob` classes.
+- `eslint.config.js`: custom lint config — `no-unused-vars` ignores identifiers matching `^[A-Z_]` (useful for components/constants).
+- `package.json`: scripts (`dev`, `build`, `preview`, `lint`) and `engines.node` requirement.
 
-Conventions & expectations
-- Use Tailwind utility classes inline in JSX rather than adding many global styles. Small helper CSS is okay in `src/App.css` / `src/index.css`.
-- File extensions are `.jsx` (no TypeScript at present). Keep components small and extract repeating patterns to new components under `src/`.
-- Keep external dependencies minimal. Icons use `lucide-react` (already in package.json).
+Conventions & expectations (project-specific)
+- UI styling: favor Tailwind utility classes inline in JSX; add small helper CSS only in `src/App.css` / `src/index.css` when necessary.
+- Components: keep `.jsx` components small; extract repeating UI patterns into components under `src/`.
+- Dependencies: keep minimal; icons use `lucide-react`.
+- Tests: there are no tests yet. If adding tests, add an `npm test` script and document how to run them in the README.
 
-CI / Deploy notes
-- PRs targeting `main` trigger the Azure Static Web Apps workflow. Ensure changes build cleanly (`npm run build`) and pass linting locally before opening a PR.
-- The workflow uses a repo secret `AZURE_STATIC_WEB_APPS_API_TOKEN_*` — coordinate with maintainers to add/change secrets if you change deployment.
+Developer workflows & checks
+- Dev: `npm run dev` to iterate locally (HMR). Check browser console for runtime warnings.
+- Lint: `npm run lint` (fix issues before PRs).
+- Build: `npm run build` to validate production output. Open `npm run preview` to smoke-test the build.
+- CI: PRs to `main` run the Azure Static Web Apps workflow. Ensure `npm run build` succeeds and lint passes locally before opening PRs.
 
-If you add an API
-- Add an `api/` directory and set the `api_location` in the workflow. Follow Azure Functions or Static Web Apps conventions depending on the runtime you choose.
-
-Testing & quality
-- There are no existing unit/integration tests. If you add tests, include `npm test` script and document how to run them in this repository README.
-
-Examples from the codebase (copyable patterns)
-- Small client-only subscription handler:
-  - `src/App.jsx` form uses `onSubmit={handleSubscribe}` and a simple `alert()` mock — replace with a network call when adding a backend.
-- Tailwind animation example: defined in `tailwind.config.js` as `blob` then used via `animate-blob` utility classes in `src/App.jsx`.
+Adding a backend/API
+- If you add server code, create an `api/` directory and update `api_location` in the Azure workflow(s) under `.github/workflows/`. Follow Azure Static Web Apps or Azure Functions conventions depending on runtime.
 
 PR checklist for agents
-- Run `npm run lint` and fix issues.
-- Run `npm run build` to verify no build regressions.
-- If changing deployment shape, update `.github/workflows/azure-static-web-apps-*.yml` and mention required secret changes in the PR body.
+- Run `npm run lint` and fix reported issues.
+- Run `npm run build` and `npm run preview` to ensure the site renders and assets are correct.
+- Verify no console errors in the browser during `dev` and `preview`.
+- If changing deployment shape (adding APIs, changing output), update `.github/workflows/azure-static-web-apps-*.yml` and mention required secret changes in PR body.
+
+Examples & quick references
+- Countdown logic: `src/App.jsx` (useEffect-based time calculation).
+- Subscription mock: `src/App.jsx` form handler (replace `alert()` with network call when wiring to backend).
+- Tailwind blob animation: `tailwind.config.js` → use `animate-blob`.
 
 Questions / contact
-- Project contact appears in the app footer (`hello@k-pop.tw`) for maintainers.
+- Project contact: `hello@k-pop.tw` (also in the app footer).
 
-If anything above is unclear or missing, ask for the specific file or workflow you'd like clarified.
+If anything above is unclear or you want a deeper walkthrough of a specific file, point to it and I will expand this doc with examples.
