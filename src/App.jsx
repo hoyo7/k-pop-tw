@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Bell, Calendar, Mail, ChevronRight, CheckCircle, Ticket, Music, Heart, ArrowRight, Menu, X } from 'lucide-react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import AllGroups from './AllGroups';
 
 const LandingPage = () => {
   const [email, setEmail] = useState('');
@@ -184,9 +186,9 @@ const LandingPage = () => {
                     <h2 className="text-3xl font-bold text-white mb-2">目前支援的團體／藝人</h2>
                     <p className="text-slate-400">持續新增中，點選團體即可查看近期活動</p>
                 </div>
-                <button className="text-sm text-pink-400 hover:text-pink-300 flex items-center gap-1 font-medium transition-colors">
+                  <Link to="/all-groups" className="text-sm text-pink-400 hover:text-pink-300 flex items-center gap-1 font-medium transition-colors">
                     查看全部 <ChevronRight size={16} />
-                </button>
+                  </Link>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -301,4 +303,13 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+const App = () => (
+  <Router>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/all-groups" element={<AllGroups />} />
+    </Routes>
+  </Router>
+);
+
+export default App;
