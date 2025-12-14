@@ -125,36 +125,6 @@ const LandingPage = () => {
             </a>
           </div>
 
-          {/* Simulated Countdown Card */}
-          <div className="mt-16 mx-auto max-w-md transform rotate-1 hover:rotate-0 transition-transform duration-500">
-            <div className="bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl relative overflow-hidden group">
-               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 to-purple-600"></div>
-               <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <span className="text-xs font-bold text-pink-400 uppercase tracking-wider">Upcoming Event</span>
-                    <h3 className="text-lg font-bold text-white mt-1 group-hover:text-pink-300 transition-colors">SEVENTEEN 巡迴演唱會售票</h3>
-                  </div>
-                  <Ticket className="text-slate-500 group-hover:text-pink-500 transition-colors" />
-               </div>
-               
-               <div className="grid grid-cols-4 gap-2 text-center mb-4">
-                  {[
-                    { val: timeLeft.days, label: '天' },
-                    { val: timeLeft.hours, label: '時' },
-                    { val: timeLeft.minutes, label: '分' },
-                    { val: timeLeft.seconds, label: '秒' }
-                  ].map((item, idx) => (
-                    <div key={idx} className="bg-slate-800 rounded-lg p-2">
-                      <div className="text-xl font-mono font-bold text-white">{String(item.val).padStart(2, '0')}</div>
-                      <div className="text-xs text-slate-500">{item.label}</div>
-                    </div>
-                  ))}
-               </div>
-               <div className="text-xs text-slate-400 text-center">
-                  範例：實際活動以網站公告為準
-               </div>
-            </div>
-          </div>
         </div>
       </div>
 
