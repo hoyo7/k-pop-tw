@@ -29,10 +29,10 @@ const LandingPage = () => {
 
   const groups = [
     { name: 'SEVENTEEN', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Seventeen_Carat_Renewal_2022.png/500px-Seventeen_Carat_Renewal_2022.png', color: 'from-blue-200 to-pink-200', text: 'text-slate-800' },
-    { name: 'BTS', color: 'from-purple-600 to-purple-400', text: 'text-white' },
-    { name: 'IVE', color: 'from-red-500 to-pink-500', text: 'text-white' },
-    { name: 'aespa', color: 'from-indigo-500 to-purple-500', text: 'text-white' },
-    { name: 'CORTIS', color: 'from-green-400 to-teal-400', text: 'text-white' },
+    { name: 'BTS', image: 'https://upload.wikimedia.org/wikipedia/commons/a/a6/BTS_at_2017_American_Music_Awards_in_Los_Angeles%2C_19_November_2017_02.jpg', color: 'from-purple-600 to-purple-400', text: 'text-white' },
+    { name: 'IVE', image: 'https://upload.wikimedia.org/wikipedia/commons/4/46/2023_MMA_IVE.jpg', color: 'from-red-500 to-pink-500', text: 'text-white' },
+    { name: 'aespa', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/241005_aespa_K-Link_Festival.jpg/2560px-241005_aespa_K-Link_Festival.jpg', color: 'from-indigo-500 to-purple-500', text: 'text-white' },
+    { name: 'CORTIS', image: 'https://upload.wikimedia.org/wikipedia/commons/6/65/Cortis_at_TikTok_Awards_Korea.jpg', color: 'from-green-400 to-teal-400', text: 'text-white' },
   ];
 
   return (
