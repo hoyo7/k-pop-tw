@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import AllGroups from './AllGroups';
 
 const LandingPage = () => {
-  const [email, setEmail] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
@@ -27,14 +26,6 @@ const LandingPage = () => {
 
     return () => clearInterval(interval);
   }, []);
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if(email) {
-      alert(`感謝訂閱！確認信已發送至 ${email}`);
-      setEmail('');
-    }
-  };
 
   const groups = [
     { name: 'SEVENTEEN', color: 'from-blue-200 to-pink-200', text: 'text-slate-800' },
@@ -65,8 +56,8 @@ const LandingPage = () => {
               <div className="ml-10 flex items-baseline space-x-8">
                 <a href="#features" className="hover:text-pink-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">功能介紹</a>
                 <a href="#groups" className="hover:text-pink-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">支援團體</a>
-                <a href="#subscribe" className="bg-white text-slate-900 hover:bg-pink-50 transition-colors px-4 py-2 rounded-full text-sm font-bold">
-                  免費訂閱
+                <a href="#features" className="bg-white text-slate-900 hover:bg-pink-50 transition-colors px-4 py-2 rounded-full text-sm font-bold">
+                  開始使用
                 </a>
               </div>
             </div>
@@ -86,7 +77,7 @@ const LandingPage = () => {
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <a href="#features" onClick={() => setIsMenuOpen(false)} className="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">功能介紹</a>
               <a href="#groups" onClick={() => setIsMenuOpen(false)} className="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">支援團體</a>
-              <a href="#subscribe" onClick={() => setIsMenuOpen(false)} className="text-pink-400 font-bold block px-3 py-2 rounded-md text-base">立即訂閱</a>
+              <a href="#features" onClick={() => setIsMenuOpen(false)} className="text-pink-400 font-bold block px-3 py-2 rounded-md text-base">開始使用</a>
             </div>
           </div>
         )}
@@ -121,9 +112,9 @@ const LandingPage = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a href="#subscribe" className="w-full sm:w-auto px-8 py-4 bg-white text-slate-900 rounded-full font-bold text-lg hover:bg-pink-50 transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center justify-center gap-2">
+            <a href="#features" className="w-full sm:w-auto px-8 py-4 bg-white text-slate-900 rounded-full font-bold text-lg hover:bg-pink-50 transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center justify-center gap-2">
               <Mail size={20} />
-              訂閱活動提醒
+              開始使用
             </a>
             <a href="#features" className="w-full sm:w-auto px-8 py-4 bg-slate-800/50 backdrop-blur border border-white/10 text-white rounded-full font-medium text-lg hover:bg-slate-800 transition-all flex items-center justify-center gap-2">
               了解更多
@@ -170,9 +161,9 @@ const LandingPage = () => {
               <div className="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-500/20 transition-colors">
                 <Mail className="text-purple-400" size={24} />
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">訂閱制服務</h3>
+              <h3 className="text-xl font-bold text-white mb-3">個人化追蹤</h3>
               <p className="text-slate-400 leading-relaxed">
-                只追你關心的團體，<span className="text-purple-400 font-bold">不收垃圾資訊</span>。我們尊重你的信箱，只傳送最有價值的情報。
+                追蹤你關心的團體，只收到最重要的活動與票務資訊。
               </p>
             </div>
           </div>
@@ -226,7 +217,7 @@ const LandingPage = () => {
                 {[
                     { step: '1', title: '選擇你追的團體', desc: '在首頁找到你的本命，點擊進入專屬頁面。' },
                     { step: '2', title: '查看活動倒數', desc: '確認接下來即將發生的演唱會、售票或回歸日期。' },
-                    { step: '3', title: '留下 Email 訂閱提醒', desc: '輸入信箱，我們會在活動開始前主動通知你。' }
+                    { step: '3', title: '追蹤你關注的團體', desc: '點選團體以查看活動倒數與票務資訊。' }
                 ].map((item, index) => (
                     <div key={index} className="flex items-center gap-6 bg-slate-950 p-6 rounded-2xl border border-white/5">
                         <div className="flex-shrink-0 w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-xl font-bold text-pink-500 border border-slate-700">
@@ -242,38 +233,7 @@ const LandingPage = () => {
         </div>
       </div>
 
-      {/* Subscription CTA Section */}
-      <div id="subscribe" className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 to-indigo-950/20"></div>
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-            準備好追星了嗎？
-          </h2>
-          <p className="text-slate-400 mb-8 max-w-xl mx-auto">
-            現在就訂閱，不錯過任何一場演唱會與回歸舞台。
-          </p>
 
-          <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto bg-slate-800/50 p-2 rounded-2xl border border-white/10 backdrop-blur-sm">
-            <input
-              type="email"
-              required
-              placeholder="輸入你的 Email"
-              className="flex-1 bg-transparent border-none text-white placeholder-slate-500 focus:ring-0 px-4 py-3 outline-none"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <button
-              type="submit"
-              className="bg-pink-500 hover:bg-pink-600 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg hover:shadow-pink-500/25 whitespace-nowrap"
-            >
-              訂閱提醒
-            </button>
-          </form>
-          <p className="text-xs text-slate-500 mt-4">
-            我們承諾保護你的隱私，絕不發送垃圾郵件。
-          </p>
-        </div>
-      </div>
 
       {/* Footer */}
       <footer className="bg-slate-950 border-t border-white/10 py-12">
