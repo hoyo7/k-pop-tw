@@ -28,7 +28,7 @@ const LandingPage = () => {
   }, []);
 
   const groups = [
-    { name: 'SEVENTEEN', color: 'from-blue-200 to-pink-200', text: 'text-slate-800' },
+    { name: 'SEVENTEEN', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Seventeen_Carat_Renewal_2022.png/500px-Seventeen_Carat_Renewal_2022.png', color: 'from-blue-200 to-pink-200', text: 'text-slate-800' },
     { name: 'BTS', color: 'from-purple-600 to-purple-400', text: 'text-white' },
     { name: 'IVE', color: 'from-red-500 to-pink-500', text: 'text-white' },
     { name: 'aespa', color: 'from-indigo-500 to-purple-500', text: 'text-white' },
@@ -186,7 +186,11 @@ const LandingPage = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {groups.map((group, index) => (
                     <div key={index} className={`group relative overflow-hidden rounded-2xl aspect-[4/5] cursor-pointer transition-transform hover:-translate-y-2`}>
-                        <div className={`absolute inset-0 bg-gradient-to-br ${group.color} opacity-80 group-hover:opacity-100 transition-opacity`}></div>
+                        <div
+                            className={`absolute inset-0 ${group.image ? 'bg-cover bg-center' : `bg-gradient-to-br ${group.color}`} opacity-80 group-hover:opacity-100 transition-opacity`}
+                            style={group.image ? { backgroundImage: `url('${group.image}')` } : undefined}
+                        ></div>
+                        {group.image && <div className="absolute inset-0 bg-black/25 group-hover:bg-black/30 transition-colors"></div>}
                         {/* Decorative pattern */}
                         <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
                         
